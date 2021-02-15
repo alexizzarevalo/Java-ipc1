@@ -37,6 +37,8 @@ public static String getContentOfFile(String pathname) {
 }
 ```
 
+### Crear un archivo
+
 ```java
 //crea el archivo en disco, recibe como parámetro la lista de estudiantes
 public static void createFile(String pathname) {
@@ -66,6 +68,8 @@ public static void createFile(String pathname) {
     }
 }
 ```
+
+### Agregar contenido al final de un archivo
 
 ```java
 public static void addToEndFile(String pathname, String data) {
