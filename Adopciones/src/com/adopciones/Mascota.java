@@ -1,7 +1,9 @@
 package com.adopciones;
 
+import java.io.Serializable;
+
 // Mascota: edad, color, nombre, estaAdoptada, albergue, tipo
-public class Mascota {
+public class Mascota implements Serializable {
     int edad;
     String color;
     String nombre;
@@ -17,6 +19,18 @@ public class Mascota {
         this.albergue = nombreAlbergue;
 
         this.estaAdoptada = estaAdoptado.toLowerCase() != "no";
+    }
+
+    @Override
+    public String toString() {
+        return "Mascota{" +
+                "edad=" + edad +
+                ", color='" + color + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", estaAdoptada=" + estaAdoptada +
+                ", albergue='" + albergue + '\'' +
+                ", tipo='" + tipo + '\'' +
+                '}';
     }
 }
 
