@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 // Mascota: edad, color, nombre, estaAdoptada, albergue, tipo
 public class Mascota implements Serializable {
+    int id;
     int edad;
     String color;
     String nombre;
@@ -11,7 +12,8 @@ public class Mascota implements Serializable {
     String albergue;
     String tipo;
 
-    public Mascota(String tipo, String nombre, String color, int edad, String nombreAlbergue, String estaAdoptado) {
+    public Mascota(int id, String tipo, String nombre, String color, int edad, String nombreAlbergue, String estaAdoptado) {
+        this.id = id;
         this.tipo = tipo;
         this.nombre = nombre;
         this.color = color;

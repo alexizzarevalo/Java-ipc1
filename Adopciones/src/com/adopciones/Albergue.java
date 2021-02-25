@@ -2,11 +2,13 @@ package com.adopciones;
 
 // Albergue: nombre, capacidad (recibirMascota, entregarMascota)
 public class Albergue {
+    int id;
     String nombre;
     int capacidad;
     Mascota[] arrayMascota;
 
-    public Albergue(String nombre, int capacidad) {
+    public Albergue(int id, String nombre, int capacidad) {
+        this.id = id;
         this.nombre = nombre;
         this.capacidad = capacidad;
         arrayMascota = new Mascota[this.capacidad];
