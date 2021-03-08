@@ -31,7 +31,7 @@ public class Albergue {
     public Mascota entregarMascota(String nombre) {
         for (int i = 0; i < arrayMascota.length; i++) {
             Mascota mascota = arrayMascota[i];
-            if (mascota.nombre == nombre) {
+            if (mascota.getNombre().equals(nombre)) {
                 arrayMascota[i] = null;
                 return mascota;
             }

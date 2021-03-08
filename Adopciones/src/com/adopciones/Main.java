@@ -1,8 +1,38 @@
 package com.adopciones;
 
+import com.interfaz.Dashboard;
+import com.google.gson.*;
+import com.interfaz.IntefazGrafica;
+
+import javax.swing.*;
+import java.awt.*;
+
 public class Main {
 
     public static void main(String[] args) {
+        // Leer el contenido completo archivo
+        //
+        String contenidoArchivoJson = "[{\"Id\":5,\"tipo\":\"Gato\",\"nombre\":\"Cachetes\",\"color\":\"Gris\",\"edad\":2,\"albergue\":\"El milagro\",\"estaAdoptada\":true}]";
+
+        Gson gson = new Gson();
+        Mascota[] mascotas1 = gson.fromJson(contenidoArchivoJson, Mascota[].class);
+        System.out.println();
+
+        String json = new Gson().toJson(mascotas1);
+
+
+//        JsonArray jsonArray = new JsonArray();
+//        JsonObject jsonObject = new JsonObject();
+//        jsonObject.add("id", new JsonPrimitive(5));
+//        jsonObject.add("tipo", new JsonPrimitive("Gato"));
+//        jsonObject.add("nombre", new JsonPrimitive("Cachetes"));
+//        jsonObject.add("color", new JsonPrimitive("Gris"));
+//        jsonObject.add("edad", new JsonPrimitive(2));
+//        jsonObject.add("nombreAlbergue", new JsonPrimitive("El milagro"));
+//        jsonObject.add("estaAdoptado", new JsonPrimitive("No"));
+//        jsonArray.add(jsonObject);
+
+//        System.out.println(jsonArray);
         Albergue[] albergues = {
                 new Albergue(1, "El milagro", 20),
                 new Albergue(2, "El milagro", 20)
@@ -23,10 +53,9 @@ public class Main {
             int id = Integer.parseInt(atributos[6]);
 
             Mascota mascota = new Mascota(id, tipo, nombre, color, edad, nombreAlbergue, estaAdoptado);
-//            albegue.recibirMascota(mascota);
+            //            albegue.recibirMascota(mascota);
             mascotas[i - 1] = mascota;
         }
-
 
         String contentAsig = Archivos.readFile("C:\\Users\\dalex\\Downloads\\Ejemplo\\asignarAlbergue.txt");
         String[] lineasAsig = contentAsig.split("\n");
@@ -39,6 +68,28 @@ public class Main {
             asignarMascotaAlAlbergue(albergues, mascotas, idAlbergue, idMascota);
             System.out.println();
         }
+
+        Object[][] datosMascotas = new Object[mascotas.length][];
+        for (int i = 0; i < mascotas.length; i++) {
+            datosMascotas[i] = mascotas[i].getAsRow();
+        }
+        System.out.println();
+
+
+        IntefazGrafica ventana = new IntefazGrafica(datosMascotas, Mascota.nameOfColumns);
+        ventana.setVisible(true);
+
+
+
+
+
+
+
+//        Dashboard dashboard = new Dashboard(datosMascotas, Mascota.nameOfColumns);
+//        dashboard.setVisible(true);
+//        dashboard.dispose(); // Libera recursos de la ventana y sus hijos (setVisible(false) solo la oculta)
+//        dashboard.setVisible(true);
+
 
         // Se serializa el arreglo de mascotas
         Archivos.serialize("C:\\Users\\dalex\\Downloads\\Ejemplo\\mascota_serializada.pok", mascotas);
@@ -68,7 +119,7 @@ public class Main {
     public static Mascota findMascotaById(Mascota[] mascotas, int idMascota) {
         for (int k = 0; k < mascotas.length; k++) {
             Mascota mascota = mascotas[k];
-            if (mascota.id == idMascota) {
+            if (mascota.getId() == idMascota) {
                 return mascota;
             }
         }
